@@ -551,15 +551,12 @@ export default function App() {
 
         {/* --- PAGE 4: SERVICES & CONTACT --- */}
         <section id="contact" className="px-6 py-16 md:py-24 relative overflow-hidden">
-           {/* Background noise texture */}
            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiIHZpZXdCb3g9IjAgMCA0IDQiPjxwYXRoIGZpbGw9IiM5OTlhOTkiIGZpbGwtb3BhY2l0eT0iMC4xIiBkPSJNMSAzaDF2MUgxVjN6bTItMmgxdjFIM1YxeiIvPjwvc3ZnPg==')] opacity-50 mix-blend-multiply pointer-events-none"></div>
 
           <div className="bg-slate-900 rounded-[3rem] overflow-hidden shadow-2xl text-white relative z-10">
-            {/* Background Gradient */}
             <div className="absolute top-0 right-0 w-3/4 h-full bg-gradient-to-l from-indigo-900/80 via-purple-900/20 to-transparent pointer-events-none"></div>
 
             <div className="relative z-10 grid md:grid-cols-5">
-              {/* Left: Services (3/5 width) */}
               <div className="md:col-span-3 p-8 md:p-12 lg:p-16 border-b md:border-b-0 md:border-r border-slate-800">
                 <h3 className="text-indigo-400 font-bold uppercase tracking-widest text-sm mb-10 flex items-center">
                   <Megaphone size={18} className="mr-2"/> Meine Leistungen
@@ -606,9 +603,7 @@ export default function App() {
                 </ul>
               </div>
 
-              {/* Right: Contact CTA (2/5 width) */}
               <div className="md:col-span-2 p-8 md:p-12 lg:p-16 flex flex-col justify-center bg-slate-800/30 backdrop-blur-md relative overflow-hidden">
-                 {/* Glow effect */}
                  <div className="absolute -top-20 -right-20 w-64 h-64 bg-indigo-600/30 rounded-full blur-[100px] pointer-events-none"></div>
                  <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-600/20 rounded-full blur-[100px] pointer-events-none"></div>
 
