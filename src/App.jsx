@@ -53,44 +53,51 @@ const TikTokIcon = ({ size = 24, className }) => (
   </svg>
 );
 
-// 2. Impressum Text
+// 2. Impressum Text (Aktualisiert mit offiziellem Impressum-Privatschutz)
 const ImpressumText = () => (
   <div className="space-y-6 text-sm text-slate-600 leading-relaxed">
     <div>
-      <h2 className="text-xl font-bold text-slate-900 mb-2">Angaben gemäß § 5 TMG</h2>
+      <h2 className="text-xl font-bold text-slate-900 mb-2">Angaben gemäß § 5 DDG</h2>
       <p>
         <strong>Marlex Silva</strong><br />
-        Mauerstraße 32<br />
-        64289 Darmstadt
+        c/o IP-Management #9541<br />
+        Ludwig-Erhard-Straße 18<br />
+        20459 Hamburg
       </p>
     </div>
 
     <div>
-      <h2 className="text-xl font-bold text-slate-900 mb-2">Kontakt</h2>
+      <h2 className="text-xl font-bold text-slate-900 mb-2">Kontaktdaten</h2>
       <p>
         E-Mail: <a href="mailto:contact@marlexsilva.de" className="text-indigo-600 hover:underline">contact@marlexsilva.de</a><br />
-        {/* Telefon: [DEINE TELEFONNUMMER] - Optional */}
+        Telefon: 015772636802
       </p>
     </div>
 
-    
+    <div>
+      <h2 className="text-xl font-bold text-slate-900 mb-2">Identifikationsnummern</h2>
+      <p>
+        Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br />
+        <strong>DE460179181</strong>
+      </p>
+      <p className="mt-2">
+        Wirtschaftsidentifikationsnummer:<br />
+        <strong>DE460179181</strong>
+      </p>
+    </div>
 
     <div>
       <h2 className="text-xl font-bold text-slate-900 mb-2">EU-Streitschlichtung</h2>
       <p>
-        Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: 
-        <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline ml-1">
+        Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <br />
+        <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">
           https://ec.europa.eu/consumers/odr/
-        </a>.<br />
-        Unsere E-Mail-Adresse finden Sie oben im Impressum.
+        </a>.
       </p>
     </div>
 
-    <div>
-      <h2 className="text-xl font-bold text-slate-900 mb-2">Verbraucher­streit­beilegung / Universal­schlichtungs­stelle</h2>
-      <p>
-        Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
-      </p>
+    <div className="pt-4 border-t border-slate-100 text-xs text-slate-400">
+      Quelle: <a href="https://impressum-privatschutz.de" target="_blank" rel="noopener noreferrer" className="hover:text-slate-600 transition-colors">Impressum-Privatschutz</a>
     </div>
   </div>
 );
@@ -114,23 +121,24 @@ const DatenschutzText = () => (
       </ul>
     </div>
 
-    {/* 2. Hosting - WICHTIG für Netcup */}
+    {/* 2. Hosting - Aktualisiert für Vercel */}
     <div>
       <h2 className="text-xl font-bold text-slate-900 mb-2">2. Hosting</h2>
-      <h3 className="font-bold text-slate-800 mt-2">Externes Hosting</h3>
+      <h3 className="font-bold text-slate-800 mt-2">Externes Hosting (Vercel)</h3>
       <p>
-        Diese Website wird bei einem externen Dienstleister gehostet (Hoster). Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters gespeichert. Hierbei kann es sich v. a. um IP-Adressen, Meta- und Kommunikationsdaten, Webseitenzugriffe und sonstige Daten handeln, die über eine Website generiert werden.
+        Diese Website wird bei einem externen Dienstleister gehostet (Hoster). Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters gespeichert.
       </p>
       <div className="bg-slate-50 p-4 rounded border border-slate-100 mt-3">
         <p><strong>Wir setzen folgenden Hoster ein:</strong></p>
         <p className="mt-1">
-          netcup GmbH<br />
-          Emmy-Noether-Straße 10<br />
-          D-76131 Karlsruhe
+          Vercel Inc.<br />
+          440 N Barranca Ave #4133<br />
+          Covina, CA 91723<br />
+          USA
         </p>
       </div>
       <p className="mt-3">
-        Der Einsatz des Hosters erfolgt zum Zwecke der Vertragserfüllung gegenüber unseren potenziellen und bestehenden Kunden (Art. 6 Abs. 1 lit. b DSGVO) und im Interesse einer sicheren, schnellen und effizienten Bereitstellung unseres Online-Angebots durch einen professionellen Anbieter (Art. 6 Abs. 1 lit. f DSGVO).
+        Die Datenübertragung in die USA wird auf die Standardvertragsklauseln der EU-Kommission gestützt. Details finden Sie in der Datenschutzerklärung von Vercel: <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">https://vercel.com/legal/privacy-policy</a>.
       </p>
     </div>
 
@@ -141,8 +149,9 @@ const DatenschutzText = () => (
       <p>
         Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:<br />
         <strong>Marlex Silva</strong><br />
-        Mauerstraße 32<br />
-        64289 Darmstadt<br />
+        c/o IP-Management #9541<br />
+        Ludwig-Erhard-Straße 18<br />
+        20459 Hamburg<br />
         E-Mail: contact@marlexsilva.de
       </p>
       
@@ -212,7 +221,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white font-sans selection:bg-indigo-100 selection:text-indigo-900 flex flex-col">
       {/* Navigation */}
-      <nav className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-100">
+      <nav className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-100 print:hidden">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="font-bold text-xl tracking-tighter">
             MARLEX SILVA<span className="text-indigo-600">.</span>
@@ -276,7 +285,7 @@ export default function App() {
                 </p>
             </div>
 
-            <div className="pt-4 flex flex-wrap gap-4">
+            <div className="pt-4 flex flex-wrap gap-4 print:hidden">
               <a
                 href="#contact"
                 className="px-8 py-3.5 bg-slate-900 text-white font-bold rounded-xl hover:bg-indigo-600 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 flex items-center"
@@ -284,21 +293,22 @@ export default function App() {
                 Let's Work Together <ArrowUpRight className="ml-2" size={20}/>
               </a>
               {/* Social Icons Hero */}
-              <div className="flex gap-4 items-center px-4">
-                <a href="https://www.instagram.com/marlex.silva/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                  <Instagram className="text-slate-400 hover:text-indigo-600 cursor-pointer transition-colors w-7 h-7" />
-                </a>
-                <a href="https://www.tiktok.com/@silva.marlex" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-                  <TikTokIcon className="text-slate-400 hover:text-indigo-600 cursor-pointer transition-colors size-7" />
-                </a>
-              </div>
+              {/* Social Icons Hero - Unter die neuen Buttons verschoben */}
+            <div className="flex gap-4 items-center pt-2">
+              <a href="https://www.instagram.com/marlex.silva/" target="_blank" rel="noopener noreferrer" className="p-3 bg-slate-50 rounded-full hover:bg-indigo-50 transition-colors">
+                <Instagram className="text-slate-600 hover:text-indigo-600 w-6 h-6" />
+              </a>
+              <a href="https://www.tiktok.com/@silva.marlex" target="_blank" rel="noopener noreferrer" className="p-3 bg-slate-50 rounded-full hover:bg-indigo-50 transition-colors">
+                <TikTokIcon className="text-slate-600 hover:text-indigo-600 size-6" />
+              </a>
+            </div>
             </div>
           </div>
 
           <div className="order-1 md:order-2 relative group">
             {/* Artistic Background blobs */}
-            <div className="absolute -top-10 -right-10 w-72 h-72 bg-indigo-100 rounded-full blur-3xl opacity-60 mix-blend-multiply filter animate-pulse"></div>
-            <div className="absolute -bottom-10 -left-10 w-72 h-72 bg-purple-100 rounded-full blur-3xl opacity-60 mix-blend-multiply filter animate-pulse" style={{animationDelay: '1s'}}></div>
+            <div className="absolute -top-10 -right-10 w-72 h-72 bg-indigo-100 rounded-full blur-3xl opacity-60 mix-blend-multiply filter animate-pulse print:hidden"></div>
+            <div className="absolute -bottom-10 -left-10 w-72 h-72 bg-purple-100 rounded-full blur-3xl opacity-60 mix-blend-multiply filter animate-pulse print:hidden" style={{animationDelay: '1s'}}></div>
 
             {/* Image Placeholder */}
             <div className="relative aspect-[3/4] md:aspect-[4/5] bg-slate-200 rounded-3xl overflow-hidden shadow-2xl border-4 border-white transform rotate-2 group-hover:rotate-0 transition-all duration-500">
@@ -308,13 +318,13 @@ export default function App() {
                 className="w-full h-full object-cover relative z-10"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent z-20"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent z-20 print:hidden"></div>
             </div>
           </div>
         </section>
 
         {/* --- PAGE 2: STATS & INSIGHTS --- */}
-        <section id="stats" className="px-6 py-16 bg-slate-50/80 rounded-[2.5rem] my-8 border border-slate-100 backdrop-blur-sm">
+        <section id="px-6 py-16 bg-slate-50/80 rounded-[2.5rem] my-8 border border-slate-100 backdrop-blur-sm print:bg-white print:border-none print:break-inside-avoid">
           <div className="mb-12 text-center md:text-left flex flex-col md:flex-row justify-between items-end gap-4">
             <div>
               <h3 className="text-indigo-600 font-bold uppercase tracking-widest text-sm mb-2 flex items-center">
@@ -410,7 +420,7 @@ export default function App() {
     
 
           {/* Zwei Spalten: Top Standorte (links) und Demographics (rechts) */}
-          <div className="grid md:grid-cols-2 gap-8 items-start">
+          <div className="grid md:grid-cols-2 gap-8 items-start print:break-inside-avoid">
             
             {/* Top Standorte */}
             <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm h-full">
@@ -514,7 +524,7 @@ export default function App() {
         </section>
 
         {/* --- PAGE 3: PARTNER & TRUST (Aktualisiert mit neuen Logos) --- */}
-        <section id="partners" className="px-6 py-16 border-b border-slate-100">
+        <section id="partners" className="px-6 py-16 border-b border-slate-100 print:break-inside-avoid print:py-8">
           <div className="mb-12 text-center">
             <h3 className="text-indigo-600 font-bold uppercase tracking-widest text-sm mb-2">
               Referenzen
@@ -550,11 +560,11 @@ export default function App() {
         </section>
 
         {/* --- PAGE 4: SERVICES & CONTACT --- */}
-        <section id="contact" className="px-6 py-16 md:py-24 relative overflow-hidden">
-           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiIHZpZXdCb3g9IjAgMCA0IDQiPjxwYXRoIGZpbGw9IiM5OTlhOTkiIGZpbGwtb3BhY2l0eT0iMC4xIiBkPSJNMSAzaDF2MUgxVjN6bTItMmgxdjFIM1YxeiIvPjwvc3ZnPg==')] opacity-50 mix-blend-multiply pointer-events-none"></div>
+        <section id="contact" className="px-6 py-16 md:py-24 relative overflow-hidden print:break-inside-avoid print:py-10">
+           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiIHZpZXdCb3g9IjAgMCA0IDQiPjxwYXRoIGZpbGw9IiM5OTlhOTkiIGZpbGwtb3BhY2l0eT0iMC4xIiBkPSJNMSAzaDF2MUgxVjN6bTItMmgxdjFIM1YxeiIvPjwvc3ZnPg==')] opacity-50 mix-blend-multiply pointer-events-none print:hidden"></div>
 
           <div className="bg-slate-900 rounded-[3rem] overflow-hidden shadow-2xl text-white relative z-10">
-            <div className="absolute top-0 right-0 w-3/4 h-full bg-gradient-to-l from-indigo-900/80 via-purple-900/20 to-transparent pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-3/4 h-full bg-gradient-to-l from-indigo-900/80 via-purple-900/20 to-transparent pointer-events-none print:hidden"></div>
 
             <div className="relative z-10 grid md:grid-cols-5">
               <div className="md:col-span-3 p-8 md:p-12 lg:p-16 border-b md:border-b-0 md:border-r border-slate-800">
@@ -626,7 +636,7 @@ export default function App() {
                       </span>
                   </a>
 
-                  <div className="grid grid-cols-2 gap-4 font-semibold">
+                  <div className="grid grid-cols-2 gap-4 font-semibold print:hidden">
                     <a
                       href="https://www.instagram.com/marlex.silva/"
                       target="_blank"
@@ -660,7 +670,7 @@ export default function App() {
             <span className="font-bold text-slate-900 text-base mr-2">MARLEX SILVA.</span> 
             <span>&copy; {new Date().getFullYear()} Made in Germany.</span>
           </div>
-          <div className="flex space-x-8 font-medium">
+          <div className="flex space-x-8 font-medium print:hidden">
             <button onClick={() => setActiveModal('impressum')} className="hover:text-indigo-600 transition-colors relative group">
                 Impressum
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full"></span>
