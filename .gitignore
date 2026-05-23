@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# ignore generated image variants (created by scripts/generate-images.js)
+src/assets/*-400w.*
+src/assets/*-800w.*
