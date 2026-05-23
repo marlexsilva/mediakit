@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Instagram,
   MapPin,
@@ -20,18 +20,16 @@ import {
 } from "lucide-react";
 
 // --- BILDER IMPORTE (Lokal) ---
-import portrait from "./assets/portrait.jpeg";
-import tuLogo from "./assets/TU_Darmstadt_Logo.png";
-import tedxLogo from "./assets/TEDxTUDarmstadt.png";
-import cafenini from "./assets/cafenini.webp";
-import theRoom from "./assets/TheRoom.png";
-import schuknecht from "./assets/Schuknecht.png";
-import wellnitz from "./assets/Wellnitz.png";
-import schlachthofLogo from "./assets/schlachthof.png"; 
-import wiesbadenOnIceLogo from "./assets/wiesbadenOnIce.jpg"; 
-import thaiMinistryLogo from "./assets/thaiMinistry.png"; 
-import crispycoop from "./assets/crispycoop.png"; 
-// import standorte from "./assets/Standorte.png"; // Nicht mehr benötigt, da wir die Grafik jetzt mit Code bauen
+import portrait from "./assets/portrait.jpg";
+
+// --- DATEN IMPORTE ---
+import { partners } from "./data/partners.js";
+import { ImpressumText, DatenschutzText, AGBText } from "./data/texts.jsx";
+
+// --- KOMPONENTEN IMPORTE ---
+import CookieBanner from "./components/CookieBanner.jsx";
+import { useCookieConsent } from "./hooks/useCookieConsent.js";
+import ModalOverlay from "./components/ModalOverlay.jsx";
 
 // --- HELPER KOMPONENTEN (Diese haben wahrscheinlich gefehlt!) ---
 
@@ -53,145 +51,17 @@ const TikTokIcon = ({ size = 24, className }) => (
   </svg>
 );
 
-// 2. Impressum Text (Aktualisiert mit offiziellem Impressum-Privatschutz)
-const ImpressumText = () => (
-  <div className="space-y-6 text-sm text-slate-600 leading-relaxed">
-    <div>
-      <h2 className="text-xl font-bold text-slate-900 mb-2">Angaben gemäß § 5 DDG</h2>
-      <p>
-        <strong>Marlex Silva</strong><br />
-        c/o IP-Management #9541<br />
-        Ludwig-Erhard-Straße 18<br />
-        20459 Hamburg
-      </p>
-    </div>
-
-    <div>
-      <h2 className="text-xl font-bold text-slate-900 mb-2">Kontaktdaten</h2>
-      <p>
-        E-Mail: <a href="mailto:contact@marlexsilva.de" className="text-indigo-600 hover:underline">contact@marlexsilva.de</a><br />
-        Telefon: 015772636802
-      </p>
-    </div>
-
-    <div>
-      <h2 className="text-xl font-bold text-slate-900 mb-2">Identifikationsnummern</h2>
-      <p>
-        Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br />
-        <strong>DE460179181</strong>
-      </p>
-      <p className="mt-2">
-        Wirtschaftsidentifikationsnummer:<br />
-        <strong>DE460179181</strong>
-      </p>
-    </div>
-
-    <div>
-      <h2 className="text-xl font-bold text-slate-900 mb-2">EU-Streitschlichtung</h2>
-      <p>
-        Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <br />
-        <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">
-          https://ec.europa.eu/consumers/odr/
-        </a>.
-      </p>
-    </div>
-
-    <div className="pt-4 border-t border-slate-100 text-xs text-slate-400">
-      Quelle: <a href="https://impressum-privatschutz.de" target="_blank" rel="noopener noreferrer" className="hover:text-slate-600 transition-colors">Impressum-Privatschutz</a>
-    </div>
-  </div>
-);
-
-// 3. Datenschutz Text
-const DatenschutzText = () => (
-  <div className="space-y-6 text-sm text-slate-600 leading-relaxed">
-    
-    {/* 1. Übersicht */}
-    <div>
-      <h2 className="text-xl font-bold text-slate-900 mb-2">1. Datenschutz auf einen Blick</h2>
-      <h3 className="font-bold text-slate-800 mt-2">Allgemeine Hinweise</h3>
-      <p>
-        Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.
-      </p>
-      <h3 className="font-bold text-slate-800 mt-2">Datenerfassung auf dieser Website</h3>
-      <ul className="list-disc pl-5 mt-2 space-y-1">
-        <li><strong>Wer ist verantwortlich?</strong> Die Datenverarbeitung erfolgt durch den Websitebetreiber (siehe Impressum).</li>
-        <li><strong>Wie erfassen wir Daten?</strong> Automatisch beim Besuch durch unsere IT-Systeme (z.B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs) oder wenn Sie uns diese mitteilen (z.B. per E-Mail).</li>
-        <li><strong>Wofür nutzen wir Daten?</strong> Um eine fehlerfreie Bereitstellung der Website zu gewährleisten und zur Analyse des Nutzerverhaltens.</li>
-      </ul>
-    </div>
-
-    {/* 2. Hosting - Aktualisiert für Vercel */}
-    <div>
-      <h2 className="text-xl font-bold text-slate-900 mb-2">2. Hosting</h2>
-      <h3 className="font-bold text-slate-800 mt-2">Externes Hosting (Vercel)</h3>
-      <p>
-        Diese Website wird bei einem externen Dienstleister gehostet (Hoster). Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters gespeichert.
-      </p>
-      <div className="bg-slate-50 p-4 rounded border border-slate-100 mt-3">
-        <p><strong>Wir setzen folgenden Hoster ein:</strong></p>
-        <p className="mt-1">
-          Vercel Inc.<br />
-          440 N Barranca Ave #4133<br />
-          Covina, CA 91723<br />
-          USA
-        </p>
-      </div>
-      <p className="mt-3">
-        Die Datenübertragung in die USA wird auf die Standardvertragsklauseln der EU-Kommission gestützt. Details finden Sie in der Datenschutzerklärung von Vercel: <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">https://vercel.com/legal/privacy-policy</a>.
-      </p>
-    </div>
-
-    {/* 3. Allgemeine Hinweise */}
-    <div>
-      <h2 className="text-xl font-bold text-slate-900 mb-2">3. Allgemeine Hinweise und Pflichtinformationen</h2>
-      <h3 className="font-bold text-slate-800 mt-2">Hinweis zur verantwortlichen Stelle</h3>
-      <p>
-        Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:<br />
-        <strong>Marlex Silva</strong><br />
-        c/o IP-Management #9541<br />
-        Ludwig-Erhard-Straße 18<br />
-        20459 Hamburg<br />
-        E-Mail: contact@marlexsilva.de
-      </p>
-      
-      <h3 className="font-bold text-slate-800 mt-4">SSL- bzw. TLS-Verschlüsselung</h3>
-      <p>
-        Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von „http://“ auf „https://“ wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.
-      </p>
-
-      <h3 className="font-bold text-slate-800 mt-4">Widerruf & Rechte</h3>
-      <p>
-        Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten sowie ein Recht auf Berichtigung oder Löschung dieser Daten. Wenden Sie sich dazu jederzeit an uns.
-      </p>
-    </div>
-
-    {/* 4. Datenerfassung */}
-    <div>
-      <h2 className="text-xl font-bold text-slate-900 mb-2">4. Datenerfassung auf dieser Website</h2>
-      
-      <h3 className="font-bold text-slate-800 mt-4">Anfrage per E-Mail oder Telefon</h3>
-      <p>
-        Wenn Sie uns per E-Mail oder Telefon kontaktieren, wird Ihre Anfrage inklusive aller daraus hervorgehenden personenbezogenen Daten (Name, Anfrage) zum Zwecke der Bearbeitung Ihres Anliegens bei uns gespeichert und verarbeitet. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.
-      </p>
-    </div>
-
-    {/* 5. Soziale Medien */}
-    <div>
-      <h2 className="text-xl font-bold text-slate-900 mb-2">5. Soziale Medien</h2>
-      <p>
-        Auf dieser Website sind Links zu Social-Media-Plattformen (z.B. Instagram, TikTok) eingebunden. Es handelt sich dabei um statische Links. Es werden keine Daten an die sozialen Netzwerke übertragen, solange Sie nicht aktiv auf die Links klicken.
-      </p>
-    </div>
-
-  </div>
-);
+// legal texts moved to src/data/texts.jsx
 
 // --- HAUPT APP KOMPONENTE ---
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeModal, setActiveModal] = useState(null);
+  const { preferences, savePreferences, showBanner, isLoaded, openBanner, resetPreferences } = useCookieConsent();
+  const modalRef = useRef(null);
+  const [AnalyticsComp, setAnalyticsComp] = useState(null);
+  const [SpeedInsightsComp, setSpeedInsightsComp] = useState(null);
 
   // Scroll Lock bei offenem Modal
   useEffect(() => {
@@ -202,27 +72,93 @@ export default function App() {
     }
   }, [activeModal]);
 
-  // Konfiguration für die Partner-Logos, um das Rendering sauberer zu machen
-  const partners = [
-      // Neue Partner (mit individueller Skalierung falls nötig)
-      { id: 1, src: thaiMinistryLogo, alt: "Thai Ministry of Commerce", scale: "max-h-16" },
-      { id: 2, src: schlachthofLogo, alt: "Kulturzentrum Schlachthof", scale: "max-h-14" },
-      { id: 3, src: wiesbadenOnIceLogo, alt: "Wiesbaden On Ice", scale: "max-h-14" },
-      // Bestehende Partner
-      { id: 4, src: tuLogo, alt: "TU Darmstadt", scale: "max-h-12" },
-      { id: 5, src: tedxLogo, alt: "TEDx", scale: "max-h-12" },
-      { id: 6, src: theRoom, alt: "The Room", scale: "max-h-12" },
-      { id: 7, src: cafenini, alt: "Cafenini", scale: "max-h-10" },
-      { id: 8, src: schuknecht, alt: "Schuknecht", scale: "max-h-10" },
-      { id: 9, src: wellnitz, alt: "Wellnitz", scale: "max-h-10" },
-      { id: 10, src: crispycoop, alt: "Crispy Coop", scale: "max-h-10" },
-  ];
+  // Focus management for modal
+  useEffect(() => {
+    if (!activeModal) return;
+    const modal = modalRef.current;
+    const previous = document.activeElement;
+    const focusable = modal?.querySelectorAll('a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])');
+    const first = focusable && focusable[0];
+    if (first) first.focus();
+
+    const handleKey = (e) => {
+      if (e.key === 'Escape') {
+        setActiveModal(null);
+      }
+      if (e.key === 'Tab' && focusable && focusable.length) {
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKey);
+    return () => {
+      document.removeEventListener('keydown', handleKey);
+      if (previous) previous.focus();
+    };
+  }, [activeModal]);
+
+  // Dynamically load/unload Vercel analytics based on consent
+  useEffect(() => {
+    if (!isLoaded) return;
+    let mounted = true;
+    if (preferences.analytics) {
+      Promise.all([
+        import('@vercel/analytics/react').catch(() => null),
+        import('@vercel/speed-insights/react').catch(() => null),
+      ]).then(([analyticsMod, speedMod]) => {
+        if (!mounted) return;
+        if (analyticsMod && analyticsMod.Analytics) setAnalyticsComp(() => analyticsMod.Analytics);
+        if (speedMod && speedMod.SpeedInsights) setSpeedInsightsComp(() => speedMod.SpeedInsights);
+      }).catch(() => {});
+    } else {
+      // unset components so React unmounts them
+      setAnalyticsComp(null);
+      setSpeedInsightsComp(null);
+      // dispatch event to any analytics scripts that want to clean up
+      try {
+        window.dispatchEvent(new CustomEvent('vercel-analytics-disabled'));
+      } catch (e) {}
+    }
+    return () => { mounted = false; };
+  }, [isLoaded, preferences.analytics]);
+
+  // Listen to global preference changes (in case hook events are used elsewhere)
+  useEffect(() => {
+    const handler = (e) => {
+      const prefs = e?.detail;
+      if (!prefs) return;
+      if (!prefs.analytics) {
+        setAnalyticsComp(null);
+        setSpeedInsightsComp(null);
+        try { window.dispatchEvent(new CustomEvent('vercel-analytics-disabled')); } catch (e) {}
+      } else if (prefs.analytics) {
+        // re-trigger dynamic import when analytics enabled externally
+        Promise.all([
+          import('@vercel/analytics/react').catch(() => null),
+          import('@vercel/speed-insights/react').catch(() => null),
+        ]).then(([analyticsMod, speedMod]) => {
+          if (analyticsMod && analyticsMod.Analytics) setAnalyticsComp(() => analyticsMod.Analytics);
+          if (speedMod && speedMod.SpeedInsights) setSpeedInsightsComp(() => speedMod.SpeedInsights);
+        }).catch(() => {});
+      }
+    };
+    window.addEventListener('cookie-preferences-changed', handler);
+    return () => window.removeEventListener('cookie-preferences-changed', handler);
+  }, []);
 
   return (
     <div className="min-h-screen bg-white font-sans selection:bg-indigo-100 selection:text-indigo-900 flex flex-col">
+      <a href="#main-content" className="sr-only focus:not-sr-only">Zum Inhalt springen</a>
       {/* Navigation */}
       <nav className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-100 print:hidden">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <div className="font-bold text-xl tracking-tighter">
             MARLEX SILVA<span className="text-indigo-600">.</span>
           </div>
@@ -236,25 +172,32 @@ export default function App() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <button
+            type="button"
+            className="md:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-nav"
+            aria-label={isMenuOpen ? 'Schließen' : 'Menü öffnen'}
+          >
             {isMenuOpen ? <X /> : <Menu />}
           </button>
         </div>
 
         {/* Mobile Nav Dropdown */}
         {isMenuOpen && (
-          <div className="md:hidden bg-white border-b border-slate-100 px-6 py-4 space-y-4">
-            <a href="#about" className="block text-slate-600" onClick={() => setIsMenuOpen(false)}>About</a>
-            <a href="#stats" className="block text-slate-600" onClick={() => setIsMenuOpen(false)}>Insights</a>
-            <a href="#partners" className="block text-slate-600" onClick={() => setIsMenuOpen(false)}>Partner</a>
-            <a href="#contact" className="block text-slate-600" onClick={() => setIsMenuOpen(false)}>Kontakt</a>
+          <div id="mobile-nav" role="menu" aria-label="Hauptnavigation" className="md:hidden bg-white border-b border-slate-100 px-4 sm:px-6 lg:px-8 py-4 space-y-4">
+            <a role="menuitem" href="#about" className="block text-slate-600" onClick={() => setIsMenuOpen(false)}>About</a>
+            <a role="menuitem" href="#stats" className="block text-slate-600" onClick={() => setIsMenuOpen(false)}>Insights</a>
+            <a role="menuitem" href="#partners" className="block text-slate-600" onClick={() => setIsMenuOpen(false)}>Partner</a>
+            <a role="menuitem" href="#contact" className="block text-slate-600" onClick={() => setIsMenuOpen(false)}>Kontakt</a>
           </div>
         )}
       </nav>
 
-      <main className="max-w-6xl mx-auto flex-grow w-full">
+      <main id="main-content" className="max-w-6xl mx-auto flex-grow w-full">
         {/* --- PAGE 1: HERO & INTRO --- */}
-        <section id="about" className="px-6 py-12 md:py-20 lg:py-24 grid md:grid-cols-2 gap-12 items-center">
+        <section id="about" className="px-4 sm:px-6 lg:px-8 py-8 md:py-12 lg:py-16 grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1 space-y-6">
             
             {/* Viral Badge */}
@@ -295,36 +238,45 @@ export default function App() {
               {/* Social Icons Hero */}
               {/* Social Icons Hero - Unter die neuen Buttons verschoben */}
             <div className="flex gap-4 items-center pt-2">
-              <a href="https://www.instagram.com/marlex.silva/" target="_blank" rel="noopener noreferrer" className="p-3 bg-slate-50 rounded-full hover:bg-indigo-50 transition-colors">
+              <a href="https://www.instagram.com/marlex.silva/" target="_blank" rel="noopener noreferrer" aria-label="Instagram, öffnet in neuem Tab" className="p-3 bg-slate-50 rounded-full hover:bg-indigo-50 transition-colors">
                 <Instagram className="text-slate-600 hover:text-indigo-600 w-6 h-6" />
               </a>
-              <a href="https://www.tiktok.com/@silva.marlex" target="_blank" rel="noopener noreferrer" className="p-3 bg-slate-50 rounded-full hover:bg-indigo-50 transition-colors">
+              <a href="https://www.tiktok.com/@silva.marlex" target="_blank" rel="noopener noreferrer" aria-label="TikTok, öffnet in neuem Tab" className="p-3 bg-slate-50 rounded-full hover:bg-indigo-50 transition-colors">
                 <TikTokIcon className="text-slate-600 hover:text-indigo-600 size-6" />
               </a>
             </div>
             </div>
           </div>
 
+          {/* Right: Portrait */}
           <div className="order-1 md:order-2 relative group">
-            {/* Artistic Background blobs */}
             <div className="absolute -top-10 -right-10 w-72 h-72 bg-indigo-100 rounded-full blur-3xl opacity-60 mix-blend-multiply filter animate-pulse print:hidden"></div>
             <div className="absolute -bottom-10 -left-10 w-72 h-72 bg-purple-100 rounded-full blur-3xl opacity-60 mix-blend-multiply filter animate-pulse print:hidden" style={{animationDelay: '1s'}}></div>
 
-            {/* Image Placeholder */}
-            <div className="relative aspect-[3/4] md:aspect-[4/5] bg-slate-200 rounded-3xl overflow-hidden shadow-2xl border-4 border-white transform rotate-2 group-hover:rotate-0 transition-all duration-500">
-              <img
-                src={portrait}
-                alt="Marlex Silva mit Panda"
-                className="w-full h-full object-cover relative z-10"
-                loading="lazy"
-              />
+            <div className="relative aspect-[4/5] md:aspect-[3/4] bg-slate-200 rounded-3xl overflow-hidden shadow-2xl border-4 border-white transform rotate-2 group-hover:rotate-0 transition-all duration-500">
+              <picture>
+                {/* Prefer WebP when available (fallback will be the imported JPG) */}
+                <source type="image/webp" srcSet={portrait} sizes="(max-width:768px) 80vw, 40vw" />
+                <img
+                  src={portrait}
+                  srcSet={`${portrait} 600w`}
+                  sizes="(max-width:768px) 80vw, 40vw"
+                  alt="Marlex Silva mit Panda"
+                  className="w-full h-full object-cover object-center relative z-10"
+                  style={{ objectPosition: '50% 30%' }}
+                  loading="eager"
+                  decoding="async"
+                  width={600}
+                  height={800}
+                />
+              </picture>
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent z-20 print:hidden"></div>
             </div>
           </div>
         </section>
 
         {/* --- PAGE 2: STATS & INSIGHTS --- */}
-        <section id="px-6 py-16 bg-slate-50/80 rounded-[2.5rem] my-8 border border-slate-100 backdrop-blur-sm print:bg-white print:border-none print:break-inside-avoid">
+        <section id="stats" style={{ scrollMarginTop: '5rem' }} className="px-4 sm:px-6 lg:px-8 py-12 bg-slate-50/80 rounded-[2.5rem] my-8 border border-slate-100 backdrop-blur-sm print:bg-white print:border-none print:break-inside-avoid -mt-4 md:-mt-6">
           <div className="mb-12 text-center md:text-left flex flex-col md:flex-row justify-between items-end gap-4">
             <div>
               <h3 className="text-indigo-600 font-bold uppercase tracking-widest text-sm mb-2 flex items-center">
@@ -524,7 +476,7 @@ export default function App() {
         </section>
 
         {/* --- PAGE 3: PARTNER & TRUST (Aktualisiert mit neuen Logos) --- */}
-        <section id="partners" className="px-6 py-16 border-b border-slate-100 print:break-inside-avoid print:py-8">
+        <section id="partners" className="px-4 sm:px-6 lg:px-8 py-16 border-b border-slate-100 print:break-inside-avoid print:py-8">
           <div className="mb-12 text-center">
             <h3 className="text-indigo-600 font-bold uppercase tracking-widest text-sm mb-2">
               Referenzen
@@ -539,28 +491,39 @@ export default function App() {
 
           {/* Logo Grid - Dynamisch generiert aus der Konfiguration oben */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-8 gap-y-12 items-center justify-items-center px-4 md:px-0">
-             {partners.map((partner) => (
-               // Prüfen ob ein Bild vorhanden ist, sonst Platzhalter anzeigen
-               partner.src ? (
-                 <img 
-                   key={partner.id} 
-                   src={partner.src} 
-                   alt={partner.alt} 
-                   // Nutze die individuelle Skalierungsklasse oder Fallback
-                   className={`${partner.scale || 'max-h-12'} w-auto object-contain opacity-60 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0 hover:scale-110 transform`} 
-                 />
-               ) : (
-                 // Fallback falls Bildimport fehlschlägt
-                 <div key={partner.id} className="h-12 flex items-center justify-center bg-slate-100 text-slate-400 text-xs p-2 rounded text-center font-bold uppercase tracking-wider border border-slate-200">
-                   {partner.alt} Logo Missing
+             {partners.map((partner) => {
+               // determine numeric height from Tailwind class like 'max-h-16' -> 16*4 = 64px
+               let imgHeight;
+               const match = partner.scale && partner.scale.match(/max-h-(\d+)/);
+               if (match) imgHeight = parseInt(match[1], 10) * 4;
+               return (
+                 <div key={partner.id} className={`${partner.scale || 'max-h-12'} w-auto`}>
+                   {partner.jpg800 ? (
+                        <picture>
+                          <source type="image/webp" srcSet={`${partner.webp400} 400w, ${partner.webp800} 800w`} sizes="(max-width:640px) 45vw, 120px" />
+                          <img
+                            src={partner.jpg800}
+                            srcSet={`${partner.jpg400} 400w, ${partner.jpg800} 800w`}
+                            sizes="(max-width:640px) 45vw, 120px"
+                            alt={partner.alt}
+                            loading="lazy"
+                            decoding="async"
+                            className={`${partner.scale || 'max-h-12'} w-auto object-contain opacity-60 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0 hover:scale-110 transform`}
+                          />
+                        </picture>
+                   ) : (
+                     <div className="h-12 flex items-center justify-center bg-slate-100 text-slate-400 text-xs p-2 rounded text-center font-bold uppercase tracking-wider border border-slate-200">
+                       {partner.alt} Logo Missing
+                     </div>
+                   )}
                  </div>
-               )
-             ))}
+               );
+             })}
           </div>
         </section>
 
         {/* --- PAGE 4: SERVICES & CONTACT --- */}
-        <section id="contact" className="px-6 py-16 md:py-24 relative overflow-hidden print:break-inside-avoid print:py-10">
+        <section id="contact" className="px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative overflow-hidden print:break-inside-avoid print:py-10">
            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiIHZpZXdCb3g9IjAgMCA0IDQiPjxwYXRoIGZpbGw9IiM5OTlhOTkiIGZpbGwtb3BhY2l0eT0iMC4xIiBkPSJNMSAzaDF2MUgxVjN6bTItMmgxdjFIM1YxeiIvPjwvc3ZnPg==')] opacity-50 mix-blend-multiply pointer-events-none print:hidden"></div>
 
           <div className="bg-slate-900 rounded-[3rem] overflow-hidden shadow-2xl text-white relative z-10">
@@ -641,6 +604,7 @@ export default function App() {
                       href="https://www.instagram.com/marlex.silva/"
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label="Instagram, öffnet in neuem Tab"
                       className="flex items-center justify-center space-x-2 bg-slate-800/80 py-4 rounded-xl hover:bg-slate-700 transition-all border border-slate-700 hover:border-indigo-500/50 group"
                     >
                       <Instagram size={22} className="group-hover:text-indigo-400 transition-colors"/>
@@ -650,6 +614,7 @@ export default function App() {
                       href="https://www.tiktok.com/@silva.marlex"
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label="TikTok, öffnet in neuem Tab"
                       className="flex items-center justify-center space-x-2 bg-slate-800/80 py-4 rounded-xl hover:bg-slate-700 transition-all border border-slate-700 hover:border-indigo-500/50 group"
                     >
                       <TikTokIcon size={22} className="group-hover:text-indigo-400 transition-colors"/>
@@ -665,19 +630,31 @@ export default function App() {
 
       {/* --- FOOTER --- */}
       <footer className="bg-white border-t border-slate-100 py-10">
-        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm">
           <div className="mb-4 md:mb-0 flex flex-col md:flex-row items-center font-medium">
             <span className="font-bold text-slate-900 text-base mr-2">MARLEX SILVA.</span> 
             <span>&copy; {new Date().getFullYear()} Made in Germany.</span>
           </div>
-          <div className="flex space-x-8 font-medium print:hidden">
-            <button onClick={() => setActiveModal('impressum')} className="hover:text-indigo-600 transition-colors relative group">
+          <div className="flex flex-wrap gap-4 font-medium print:hidden items-center max-w-full overflow-x-hidden">
+            <button type="button" onClick={() => setActiveModal('impressum')} className="min-w-0 hover:text-indigo-600 transition-colors relative group">
                 Impressum
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full"></span>
             </button>
-            <button onClick={() => setActiveModal('datenschutz')} className="hover:text-indigo-600 transition-colors relative group">
+            <button type="button" onClick={() => setActiveModal('datenschutz')} className="min-w-0 hover:text-indigo-600 transition-colors relative group">
                 Datenschutz
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full"></span>
+            </button>
+            <button type="button" onClick={() => setActiveModal('agb')} className="min-w-0 hover:text-indigo-600 transition-colors relative group">
+                AGB
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full"></span>
+            </button>
+            <button type="button" onClick={openBanner} className="min-w-0 hover:text-indigo-600 transition-colors relative group">
+                Privatsphäre-Einstellungen
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full"></span>
+            </button>
+            <button type="button" onClick={resetPreferences} className="min-w-0 hover:text-indigo-600 transition-colors relative group">
+              Cookies zurücksetzen
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full"></span>
             </button>
           </div>
         </div>
@@ -685,26 +662,36 @@ export default function App() {
 
       {/* --- MODAL OVERLAY --- */}
       {activeModal && (
-        <div className="fixed inset-0 z-[100] flex items-end md:items-center justify-center p-4 md:p-8 bg-slate-900/60 backdrop-blur-sm transition-opacity" onClick={() => setActiveModal(null)}>
-          <div className="bg-white w-full max-w-3xl max-h-[85vh] rounded-[2rem] shadow-2xl flex flex-col overflow-hidden relative animate-in fade-in slide-in-from-bottom-4 md:zoom-in-95 duration-300" onClick={e => e.stopPropagation()}>
+        <ModalOverlay onClose={() => setActiveModal(null)}>
+          <div ref={modalRef} className="bg-white w-full max-w-full sm:max-w-3xl max-h-[85vh] rounded-[2rem] shadow-2xl flex flex-col overflow-hidden relative animate-in fade-in duration-300 mx-auto" onClick={e => e.stopPropagation()}>
             <div className="flex justify-between items-center p-6 border-b border-slate-100 bg-white/80 backdrop-blur sticky top-0 z-10">
-              <h2 className="text-2xl font-bold text-slate-900">
-                {activeModal === 'impressum' ? 'Impressum' : 'Datenschutz'}
+              <h2 id="modal-title" className="text-2xl font-bold text-slate-900">
+                {activeModal === 'impressum' ? 'Impressum' : activeModal === 'datenschutz' ? 'Datenschutz' : 'AGB'}
               </h2>
               <button 
+                type="button"
                 onClick={() => setActiveModal(null)}
                 className="p-2 hover:bg-slate-100 rounded-full transition-colors bg-slate-50 border border-slate-100"
+                aria-label="Schließen"
               >
                 <X size={24} className="text-slate-700" />
               </button>
             </div>
-            <div className="p-8 overflow-y-auto custom-scrollbar">
+            <div className="p-4 sm:p-8 overflow-y-auto custom-scrollbar break-words">
               {activeModal === 'impressum' && <ImpressumText />}
               {activeModal === 'datenschutz' && <DatenschutzText />}
+              {activeModal === 'agb' && <AGBText />}
             </div>
           </div>
-        </div>
+        </ModalOverlay>
       )}
+
+      {/* Cookie Banner */}
+      {isLoaded && <CookieBanner showBanner={showBanner} onSavePreferences={savePreferences} />}
+
+      {/* Dynamically loaded analytics components (only when consent given) */}
+      {AnalyticsComp && <AnalyticsComp />}
+      {SpeedInsightsComp && <SpeedInsightsComp />}
 
     </div>
   );
