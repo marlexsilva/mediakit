@@ -123,73 +123,125 @@ export const DatenschutzText = () => (
 export const AGBText = () => (
   <div className="space-y-6 text-sm text-slate-600 leading-relaxed">
     <div>
-      <h2 className="text-xl font-bold text-slate-900 mb-2">§1 Geltungsbereich</h2>
-      <p>
-        Diese Allgemeinen Geschäftsbedingungen (AGB) regeln die Geschäftsbeziehung zwischen Marlex Silva (nachfolgend „Dienstleistender") und Kunden (nachfolgend „Auftraggeber") für die Erbringung von Social-Media- und Content-Creation-Dienstleistungen.
-      </p>
+      <h1 className="text-xl font-bold text-slate-900 mb-1">Allgemeine Geschäftsbedingungen (AGB)</h1>
+      <p className="font-medium">Content Creation &amp; Brand Strategy — Marlex Silva</p>
+      <p className="text-xs text-slate-500">Stand: Juni 2026</p>
     </div>
 
     <div>
-      <h2 className="text-xl font-bold text-slate-900 mb-2">§2 Leistungsumfang</h2>
-      <p>
-        Der Dienstleistende erbringt auf Basis individueller Vereinbarungen Dienstleistungen im Bereich Content-Creation, Social-Media-Management und verwandter digitaler Dienstleistungen. Der genaue Leistungsumfang wird in einem separaten Angebot oder Vertrag festgehalten.
-      </p>
+      <h2 className="text-lg font-bold text-slate-900 mb-2">§ 1  Geltungsbereich &amp; Vertragspartner</h2>
+      <ol className="list-decimal pl-5 space-y-2">
+        <li>Diese Allgemeinen Geschäftsbedingungen (nachfolgend „AGB“) gelten für alle Verträge über Video-Produktion, Content-Erstellung, Social-Media-Marketing und strategische Beratung zwischen Marlex Silva – Content Creation &amp; Brand Strategy (nachfolgend „Dienstleister“) und seinen Kunden (nachfolgend „Auftraggeber“).</li>
+        <li>Diese AGB gelten ausschließlich gegenüber Unternehmern im Sinne des § 14 BGB, juristischen Personen des öffentlichen Rechts oder öffentlich-rechtlichen Sondervermögen. Entgegenstehende oder abweichende Bedingungen des Auftraggebers werden nicht anerkannt, es sei denn, der Dienstleister stimmt ihrer Geltung ausdrücklich schriftlich zu.</li>
+        <li>Maßgeblich ist jeweils die zum Zeitpunkt des Vertragsschlusses gültige Fassung der AGB. Änderungen werden dem Auftraggeber spätestens vier (4) Wochen vor Inkrafttreten in Textform mitgeteilt.</li>
+      </ol>
     </div>
 
     <div>
-      <h2 className="text-xl font-bold text-slate-900 mb-2">§3 Vertragsbedingungen</h2>
-      <p>
-        Alle Angebote sind freibleibend und unverbindlich. Ein Vertrag kommt erst durch schriftliche Bestätigung des Dienstleistenden zustande. Abweichende oder zusätzliche Bedingungen des Auftraggebers werden nicht anerkannt, es sei denn, der Dienstleistende stimmt diesen ausdrücklich schriftlich zu.
-      </p>
+      <h2 className="text-lg font-bold text-slate-900 mb-2">§ 2  Vertragsschluss &amp; Leistungsumfang</h2>
+      <ol className="list-decimal pl-5 space-y-2">
+        <li>Die Präsentation von Dienstleistungen auf der Website oder in Angeboten stellt kein bindendes Angebot (invitatio ad offerendum) dar. Ein Vertrag kommt erst durch die schriftliche Bestätigung (E-Mail ausreichend) des Angebots durch den Auftraggeber und die anschließende Auftragsbestätigung des Dienstleisters zustande.</li>
+        <li>Der genaue Leistungsumfang (Anzahl der Reels/Stories, Deadlines, Veröffentlichungsrechte, Plattformen) ergibt sich aus dem jeweiligen Einzelvertrag oder dem schriftlichen Angebot.</li>
+        <li>Teilleistungen sind zulässig, sofern sie für den Auftraggeber zumutbar sind.</li>
+      </ol>
     </div>
 
     <div>
-      <h2 className="text-xl font-bold text-slate-900 mb-2">§4 Honorar und Zahlungsbedingungen</h2>
-      <p>
-        Das Honorar wird entsprechend der vereinbarten Leistung in Rechnung gestellt. Zahlungsfristen: 14 Tage nach Rechnungsdatum. Bei Zahlungsverzug ist der Dienstleistende berechtigt, den Anspruch auf Verzugszinsen geltend zu machen. Der Auftraggeber trägt alle Bankgebühren.
-      </p>
+      <h2 className="text-lg font-bold text-slate-900 mb-2">§ 3  Mitwirkungspflichten des Auftraggebers</h2>
+      <ol className="list-decimal pl-5 space-y-2">
+        <li>Der Auftraggeber stellt dem Dienstleister alle für die Produktion benötigten Informationen, Logos, Zugänge, Produkte oder firmeninternen Richtlinien rechtzeitig – mindestens fünf (5) Werktage vor geplantem Produktionsbeginn – zur Verfügung.</li>
+        <li>Kommt der Auftraggeber seinen Mitwirkungspflichten nicht fristgerecht nach und verzögert sich dadurch die Produktion, gerät der Auftraggeber in Annahmeverzug. Der Vergütungsanspruch des Dienstleisters bleibt in voller Höhe bestehen; entstehende Mehrkosten trägt der Auftraggeber.</li>
+        <li>Der Auftraggeber sichert zu, dass die von ihm bereitgestellten Materialien frei von Rechten Dritter sind und stellt den Dienstleister von sämtlichen Ansprüchen Dritter frei.</li>
+      </ol>
     </div>
 
     <div>
-      <h2 className="text-xl font-bold text-slate-900 mb-2">§5 Lieferzeiten</h2>
-      <p>
-        Die vereinbarten Lieferzeiten beginnen mit dem Zeitpunkt der Auftragsbestätigung. Lieferzeiten sind keine Fristen, sondern freibleibende Angaben, soweit nicht ausdrücklich etwas anderes vereinbart wurde.
-      </p>
+      <h2 className="text-lg font-bold text-slate-900 mb-2">§ 4  Korrekturschleifen &amp; Abnahme</h2>
+      <ol className="list-decimal pl-5 space-y-2">
+        <li>Im vereinbarten Honorar ist eine (1) Korrekturschleife auf den Videoschnitt enthalten, sofern im Einzelvertrag nichts anderes vereinbart ist. Jede weitere Korrekturschleife wird nach dem aktuellen Stundensatz des Dienstleisters gesondert in Rechnung gestellt.</li>
+        <li>Änderungswünsche sind innerhalb von fünf (5) Werktagen nach Übermittlung des ersten Entwurfs schriftlich mitzuteilen. Nach Ablauf dieser Frist oder nach eigenständiger Veröffentlichung des Contents durch den Auftraggeber gilt das Werk als mängelfrei abgenommen.</li>
+        <li>Nachträgliche Änderungswünsche, die inhaltlich vom ursprünglichen, freigegebenen Briefing abweichen, gelten als neuer Auftrag und werden gesondert vergütet.</li>
+      </ol>
     </div>
 
     <div>
-      <h2 className="text-xl font-bold text-slate-900 mb-2">§6 Urheberrecht und Nutzungsrechte</h2>
-      <p>
-        Alle von dem Dienstleistenden erstellten Werke (Fotos, Videos, Grafiken, Texte) unterliegen dem Urheberrecht des Dienstleistenden oder seiner Lizenzgeber. Der Auftraggeber erhält das Recht zur Nutzung der vereinbarten Inhalte im vereinbarten Umfang. Weiterverkauf, Vermietung oder Verbreitung ohne ausdrückliche Genehmigung sind untersagt.
-      </p>
+      <h2 className="text-lg font-bold text-slate-900 mb-2">§ 5  Vergütung, Zahlungsbedingungen &amp; Stornierung</h2>
+      <ol className="list-decimal pl-5 space-y-2">
+        <li>Alle Preise verstehen sich als Nettopreise zzgl. der gesetzlichen Umsatzsteuer. Sofern eine Kooperation ganz oder teilweise bargeldlos als Sachbezug (z. B. Bewirtung, Gutscheine, Übernachtungen) erfolgt, gilt der reguläre Bruttowert der Sachzuwendung als Teil der Vergütung. Der Auftraggeber verpflichtet sich in diesem Fall unwiderruflich, die Pauschalversteuerung nach § 37b EStG zu übernehmen und den Dienstleister hierüber schriftlich zu unterrichten.</li>
+        <li>Rechnungen sind innerhalb von 14 Tagen nach Rechnungsstellung ohne Abzug zur Zahlung fällig. Bei Zahlungsverzug gelten die gesetzlichen Verzugszinsen für B2B-Geschäfte (§ 288 Abs. 2 BGB) sowie eine Mahnpauschale von 40,00 EUR.</li>
+        <li>Der Dienstleister ist berechtigt, vor Produktionsbeginn eine Anzahlung von bis zu 50 % des vereinbarten Honorars zu verlangen. Bei Neukunden oder ab einem Projektvolumen von 500 € netto kann eine Anzahlung von bis zu 100 % vor Produktionsbeginn verlangt werden.</li>
+        <li>Bei leistungs- oder erfolgsbasierten Vergütungen (z. B. NeoTaste-Conversions) ist der Auftraggeber verpflichtet, dem Dienstleister innerhalb von sieben (7) Werktagen nach Ablauf des Kampagnenzeitraums die systemgenerierten Tracking-Daten zur Verfügung zu stellen. Bei Nichtvorlage gilt die vertraglich vereinbarte Höchstpauschale als fällig.</li>
+      </ol>
+
+      <div className="pt-2">
+        <h3 className="font-semibold">Stornogebühren bei Auftragsabbruch oder Terminabsage durch den Auftraggeber (bezogen auf den vereinbarten Drehtermin):</h3>
+        <ul className="list-none pl-0 mt-2 space-y-1">
+          <li>Absage mehr als 14 Tage vor dem Termin: 25 % des Gesamthonorars</li>
+          <li>Absage 7–14 Tage vor dem Termin: 50 % des Gesamthonorars</li>
+          <li>Absage weniger als 7 Tage vor dem Termin: 75 % des Gesamthonorars</li>
+          <li>Absage unter 24 Stunden vor dem Termin oder bei Nichterscheinen: 100 % des Gesamthonorars</li>
+        </ul>
+        <p className="mt-2">Bereits angefallene Auslagen (z. B. Reisekosten, Equipment-Mieten) sind in jedem Fall vollständig zu erstatten.</p>
+      </div>
     </div>
 
     <div>
-      <h2 className="text-xl font-bold text-slate-900 mb-2">§7 Datenschutz und Haftung</h2>
-      <p>
-        Der Dienstleistende beachtet alle geltenden Datenschutzbestimmungen. Der Auftraggeber ist verantwortlich für alle rechtlichen Anforderungen bezüglich des bereitgestellten Inhalts. Der Dienstleistende übernimmt keine Haftung für Inhalte, die vom Auftraggeber bereitgestellt werden.
-      </p>
+      <h2 className="text-lg font-bold text-slate-900 mb-2">§ 6  Urheber- &amp; Nutzungsrechte</h2>
+      <ol className="list-decimal pl-5 space-y-2">
+        <li>Alle Urheberrechte an den produzierten Inhalten (Videos, Bilder, Rohmaterial, Grafiken, Audio) verbleiben beim Dienstleister.</li>
+        <li>Mit vollständiger Zahlung der Vergütung räumt der Dienstleister dem Auftraggeber einfache, zeitlich und räumlich unbeschränkte Nutzungsrechte ein, den fertigen Content auf den eigenen organischen Social-Media-Kanälen und der eigenen Website zu nutzen.</li>
+      </ol>
+
+      <div className="pt-2">
+        <h3 className="font-semibold">Folgende Nutzungsarten sind nicht im Basishonorar enthalten und bedürfen einer gesonderten schriftlichen Vereinbarung (Buyout-Gebühr):</h3>
+        <ul className="list-disc pl-5 mt-2 space-y-1">
+          <li>Nutzung für kostenpflichtige Werbeanzeigen (Meta Ads, TikTok Spark Ads, YouTube Ads, Whitelisting u. Ä.)</li>
+          <li>Weitergabe oder Sublizenzierung an Dritte (z. B. Partnerbrands, Verbandsseiten)</li>
+          <li>Nutzung außerhalb der digitalen Plattformen (z. B. Print, TV, Out-of-Home)</li>
+          <li>Nutzungszeitraum über 24 Monate hinaus</li>
+        </ul>
+        <p className="mt-2">Die Herausgabe von ungeschnittenem Rohmaterial (B-Roll) ist nicht geschuldet.</p>
+        <p className="mt-2">Der Dienstleister ist berechtigt, die Inhalte im Rahmen der Eigenwerbung (Portfolio, Website, Social Media) als Referenz zu nutzen, sofern der Auftraggeber dem nicht aus berechtigten Gründen schriftlich widerspricht.</p>
+      </div>
     </div>
 
     <div>
-      <h2 className="text-xl font-bold text-slate-900 mb-2">§8 Geheimhaltung</h2>
-      <p>
-        Beide Parteien verpflichten sich zur Geheimhaltung von Geschäftsinformationen, die ihnen im Rahmen der Geschäftsbeziehung anvertraut werden, soweit diese nicht öffentlich bekannt sind.
-      </p>
+      <h2 className="text-lg font-bold text-slate-900 mb-2">§ 7  Geheimhaltung</h2>
+      <p>Beide Parteien verpflichten sich, alle im Rahmen der Zusammenarbeit erhaltenen vertraulichen Informationen (Geschäftsgeheimnisse, Kampagnenpläne, Preiskonditionen) gegenüber Dritten geheim zu halten. Diese Verpflichtung gilt für die Dauer des Vertragsverhältnisses sowie für zwei (2) Jahre darüber hinaus.</p>
     </div>
 
     <div>
-      <h2 className="text-xl font-bold text-slate-900 mb-2">§9 Gültigkeitsdauer und Kündigung</h2>
-      <p>
-        Verträge bestehen für den vereinbarten Zeitraum. Eine Kündigung kann mit einer Frist von 30 Tagen zum Ende eines Kalendermonats erfolgen, sofern nichts anderes vereinbart ist.
-      </p>
+      <h2 className="text-lg font-bold text-slate-900 mb-2">§ 8  Haftung</h2>
+      <ol className="list-decimal pl-5 space-y-2">
+        <li>Der Dienstleister haftet unbeschränkt für Vorsatz und grobe Fahrlässigkeit sowie für Schäden aus der Verletzung des Lebens, des Körpers oder der Gesundheit.</li>
+        <li>Für leichte Fahrlässigkeit haftet der Dienstleister nur bei der Verletzung einer wesentlichen Vertragspflicht (Kardinalpflicht). Die Haftung ist in diesen Fällen auf den bei Vertragsschluss vorhersehbaren, vertragstypischen Schaden begrenzt.</li>
+        <li>Die Haftung für mittelbare Schäden, entgangenen Gewinn oder ausgebliebenes Reichweitenwachstum ist – soweit gesetzlich zulässig – ausgeschlossen.</li>
+        <li>Die rechtliche Prüfung der produzierten Werbemaßnahmen (insbesondere UWG, Markenrecht, DSGVO, Influencer-Kennzeichnungspflicht nach §§ 5a, 5b UWG) obliegt ausschließlich dem Auftraggeber.</li>
+      </ol>
     </div>
 
     <div>
-      <h2 className="text-xl font-bold text-slate-900 mb-2">§10 Schlussbestimmungen</h2>
-      <p>
-        Diese AGB und alle weiteren Vereinbarungen werden nach deutschem Recht ausgelegt. Es gelten die Gerichtsstände der Bundesrepublik Deutschland. Sollte eine Bestimmung dieser AGB ungültig sein, bleiben die übrigen Bestimmungen gültig. Änderungen dieser AGB müssen in Schriftform erfolgen.
-      </p>
+      <h2 className="text-lg font-bold text-slate-900 mb-2">§ 9  Absagen &amp; Verschiebungen durch den Dienstleister</h2>
+      <ol className="list-decimal pl-5 space-y-2">
+        <li>Der Dienstleister behält sich das Recht vor, vereinbarte Produktionstermine aus wichtigen Gründen (z. B. akute Krankheit, technische Defekte am Equipment, höhere Gewalt) zu verschieben. Dies gilt ausdrücklich auch für ungeeignete Witterungsverhältnisse bei Außenaufnahmen (z. B. Regen, Sturm, starke Bewölkung bei explizit vereinbartem Schönwetter-Content). In diesen Fällen wird unverzüglich ein adäquater Ersatztermin vereinbart, ohne dass dem Dienstleister oder dem Auftraggeber dadurch Storngebühren oder Schadensersatzansprüche entstehen. Der Vertrag bleibt in vollem Umfang bestehen.</li>
+        <li>Bei einer durch den Dienstleister verschobenen Produktion ist die Haftung für mittelbare Schäden oder entgangenen Gewinn des Auftraggebers ausgeschlossen, es sei denn, dem Dienstleister fällt grobe Fahrlässigkeit oder Vorsatz zur Last.</li>
+        <li>Die Gesamthaftung des Dienstleisters ist in jedem Fall auf die Höhe des vereinbarten Netto-Honorars des jeweiligen Einzelauftrags begrenzt, soweit nicht Vorsatz oder grobe Fahrlässigkeit vorliegt.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h2 className="text-lg font-bold text-slate-900 mb-2">§ 10  Datenschutz</h2>
+      <p>Beide Parteien verpflichten sich, die jeweils geltenden datenschutzrechtlichen Bestimmungen (DSGVO, BDSG) einzuhalten.</p>
+    </div>
+
+    <div>
+      <h2 className="text-lg font-bold text-slate-900 mb-2">§ 11  Schlussbestimmungen &amp; Gerichtsstand</h2>
+      <ol className="list-decimal pl-5 space-y-2">
+        <li>Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts (CISG).</li>
+        <li>Sofern der Auftraggeber Kaufmann, juristische Person des öffentlichen Rechts oder öffentlich-rechtliches Sondervermögen ist, ist ausschließlicher Gerichtsstand für alle Streitigkeiten aus diesem Vertrag Wiesbaden.</li>
+        <li>Sollten einzelne Bestimmungen dieser AGB unwirksam sein oder werden, berührt dies die Wirksamkeit der übrigen Bestimmungen nicht (salvatorische Klausel).</li>
+        <li>Änderungen dieser AGB sowie des jeweiligen Einzelvertrags bedürfen der Schriftform (E-Mail ausreichend).</li>
+      </ol>
     </div>
   </div>
 );
